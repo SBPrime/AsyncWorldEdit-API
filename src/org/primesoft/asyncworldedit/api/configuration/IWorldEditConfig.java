@@ -1,6 +1,6 @@
 /*
  * AsyncWorldEdit API
- * Copyright (c) 2015, SBPrime <https://github.com/SBPrime/>
+ * Copyright (c) 2016, SBPrime <https://github.com/SBPrime/>
  * Copyright (c) AsyncWorldEdit API contributors
  *
  * All rights reserved.
@@ -38,87 +38,25 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package org.primesoft.asyncworldedit.api.directChunk;
+package org.primesoft.asyncworldedit.api.configuration;
 
-import org.bukkit.World;
-import org.primesoft.asyncworldedit.api.playerManager.IPlayerEntry;
+import java.util.Set;
 
 /**
- * Chunk manipulation class
+ *
  * @author SBPrime
  */
-public interface IWrappedChunk {
+public interface IWorldEditConfig {
     /**
-     * Get the bukkit world
+     * Get the maximum number of blocks that can be changed in an edit session.
+     *
+     * @return block change limit
+     */
+    int getBlockChangeLimit();
+    
+    /**
+     * Get the list of disallowed blocks
      * @return 
      */
-    public World getWorld();
-    
-    /**
-     * Get the chunk X coordinate
-     * @return 
-     */
-    public int getX();
-    
-    /**
-     * Get the chunk Y coordinate
-     * @return 
-     */
-    public int getZ();
-    
-
-    /**
-     * Get the player that wrapped the chunk
-     * @return 
-     */
-    public IPlayerEntry getPlayer();
-    
-    /**
-     * Get the chunk data
-     * @return 
-     */
-    public IChunkData getData();
-    
-    /**
-     * Set the chunk data
-     * @param data
-     * @return 
-     */
-    public boolean setData(IChunkData data);
-    
-    /**
-     * Set the chunk undo data
-     * @param data
-     * @return 
-     */
-    public boolean setData(IChunkUndoData data);
-    
-    
-    /**
-     * Set the chunk data
-     * @param data
-     * @return 
-     */
-    public IChunkUndoData setData(IChangesetData data);
-
-
-    /**
-     * Flush stored data to the server     
-     */
-    public void flush();
-    
-    
-    /**
-     * Initialise the lighting
-     */
-    public void initLighting();
-    
-    
-    /**
-     * Update the light for provided position
-     * @param x
-     * @param y
-     * @param z 
-     */
-    public void updateLight(int x, int y, int z);
+    Set<Integer> getDisallowedBlocks();
 }

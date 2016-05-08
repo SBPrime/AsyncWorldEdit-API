@@ -104,6 +104,13 @@ public interface ISerializedEntity {
      * @return
      */
     CompoundTag getRawData(int cx, int cz, UUID newUuid);
+    
+    
+    /**
+     * Get the serialized NBT
+     * @return 
+     */
+    byte[] getNBT();
         
     
     /**

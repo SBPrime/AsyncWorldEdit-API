@@ -62,6 +62,12 @@ public interface IPlayerEntry {
      * @return 
      */
     boolean getAweMode();
+    
+    /**
+     * Is undo disabled
+     * @return 
+     */
+    boolean isUndoOff();
 
     /**
      * Get the player name
@@ -144,6 +150,12 @@ public interface IPlayerEntry {
      * @param mode 
      */
     void setAweMode(boolean mode);
+    
+    /**
+     * Set player Undo mode
+     * @param mode 
+     */
+    void setUndoMode(boolean mode);
 
     /**
      * Update the player after relogin

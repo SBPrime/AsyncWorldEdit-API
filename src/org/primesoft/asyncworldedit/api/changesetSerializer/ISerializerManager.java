@@ -1,6 +1,6 @@
 /*
  * AsyncWorldEdit API
- * Copyright (c) 2015, SBPrime <https://github.com/SBPrime/>
+ * Copyright (c) 2016, SBPrime <https://github.com/SBPrime/>
  * Copyright (c) AsyncWorldEdit API contributors
  *
  * All rights reserved.
@@ -38,87 +38,125 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package org.primesoft.asyncworldedit.api.directChunk;
+package org.primesoft.asyncworldedit.api.changesetSerializer;
 
-import org.bukkit.World;
+import com.sk89q.worldedit.history.change.Change;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.util.List;
 import org.primesoft.asyncworldedit.api.playerManager.IPlayerEntry;
+import org.primesoft.asyncworldedit.api.worldedit.ICancelabeEditSession;
 
 /**
- * Chunk manipulation class
+ *
  * @author SBPrime
  */
-public interface IWrappedChunk {
-    /**
-     * Get the bukkit world
-     * @return 
-     */
-    public World getWorld();
-    
-    /**
-     * Get the chunk X coordinate
-     * @return 
-     */
-    public int getX();
-    
-    /**
-     * Get the chunk Y coordinate
-     * @return 
-     */
-    public int getZ();
-    
+public interface ISerializerManager {
 
     /**
-     * Get the player that wrapped the chunk
-     * @return 
+     * Register new serializer
+     *
+     * @param serializer
      */
-    public IPlayerEntry getPlayer();
-    
-    /**
-     * Get the chunk data
-     * @return 
-     */
-    public IChunkData getData();
-    
-    /**
-     * Set the chunk data
-     * @param data
-     * @return 
-     */
-    public boolean setData(IChunkData data);
-    
-    /**
-     * Set the chunk undo data
-     * @param data
-     * @return 
-     */
-    public boolean setData(IChunkUndoData data);
-    
-    
-    /**
-     * Set the chunk data
-     * @param data
-     * @return 
-     */
-    public IChunkUndoData setData(IChangesetData data);
-
+    void addSerializer(IChangesetSerializer serializer);
 
     /**
-     * Flush stored data to the server     
+     * Unregister serializer
+     *
+     * @param serializer
      */
-    public void flush();
+    void removeSerializer(IChangesetSerializer serializer);
+
+    /**
+     * Initialize the undo storage file
+     *
+     * @param player
+     * @param id
+     * @return
+     */
+    File open(IPlayerEntry player, int id);
+
+    /**
+     * Close undo storage file
+     *
+     * @param storageFile
+     */
+    void close(File storageFile);
+
+    /**
+     * Save changes to file
+     *
+     * @param storageFile
+     * @param data
+     */
+    void save(File storageFile, List<Change> data);
+
+    /**
+     * Load changes from file
+     *
+     * @param storageFile
+     * @param entries Number of entries to load
+     * @param player
+     * @param cancelable
+     * @return
+     */
+    List<Change> load(File storageFile, int entries, IPlayerEntry player, ICancelabeEditSession cancelable);
+
+    /**
+     * Deserialize the undo entry
+     *
+     * @param entry
+     * @param storage
+     * @return
+     */
+    Change deserialize(IUndoEntry entry, IMemoryStorage storage);
+
+    /**
+     * Serialize the change to UndoEntry
+     *
+     * @param change
+     * @param storage
+     * @return
+     */
+    IUndoEntry serialize(Change change, IMemoryStorage storage);
+
+    /**
+     * Load the undo data from stream
+     *
+     * @param stream
+     * @return
+     * @throws IOException
+     */
+    IUndoEntry load(RandomAccessFile stream) throws IOException;
+
+    /**
+     * Load the undo data from stream
+     *
+     * @param stream
+     * @return
+     * @throws IOException
+     */
+    IUndoEntry load(DataInputStream stream) throws IOException;
     
     
     /**
-     * Initialise the lighting
+     * Save the undo data to stream
+     *
+     * @param stream
+     * @param undoEntry
+     * @throws IOException
      */
-    public void initLighting();
-    
+    void save(RandomAccessFile stream, IUndoEntry undoEntry) throws IOException;
     
     /**
-     * Update the light for provided position
-     * @param x
-     * @param y
-     * @param z 
+     * Save the undo data to stream
+     *
+     * @param stream
+     * @param undoEntry
+     * @throws IOException
      */
-    public void updateLight(int x, int y, int z);
+    void save(DataOutputStream stream, IUndoEntry undoEntry) throws IOException;
 }

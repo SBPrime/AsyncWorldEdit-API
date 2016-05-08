@@ -58,4 +58,14 @@ public interface IProgressDisplayManager extends IProgressDisplay {
      * @return 
      */
     public boolean unregisterProgressDisplay(IProgressDisplay backend);
+    
+    
+    /**
+     * Format default progress message
+     * @param jobsCount
+     * @param speed
+     * @param timeLeft
+     * @return 
+     */
+    public String formatMessage(int jobsCount, double speed, double timeLeft);
 }

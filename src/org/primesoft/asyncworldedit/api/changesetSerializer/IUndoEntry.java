@@ -1,6 +1,6 @@
 /*
  * AsyncWorldEdit API
- * Copyright (c) 2015, SBPrime <https://github.com/SBPrime/>
+ * Copyright (c) 2016, SBPrime <https://github.com/SBPrime/>
  * Copyright (c) AsyncWorldEdit API contributors
  *
  * All rights reserved.
@@ -38,87 +38,25 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package org.primesoft.asyncworldedit.api.directChunk;
-
-import org.bukkit.World;
-import org.primesoft.asyncworldedit.api.playerManager.IPlayerEntry;
+package org.primesoft.asyncworldedit.api.changesetSerializer;
 
 /**
- * Chunk manipulation class
+ *
  * @author SBPrime
  */
-public interface IWrappedChunk {
-    /**
-     * Get the bukkit world
-     * @return 
-     */
-    public World getWorld();
-    
-    /**
-     * Get the chunk X coordinate
-     * @return 
-     */
-    public int getX();
-    
-    /**
-     * Get the chunk Y coordinate
-     * @return 
-     */
-    public int getZ();
-    
+public interface IUndoEntry {
 
     /**
-     * Get the player that wrapped the chunk
-     * @return 
+     * Get the serialized Change
+     *
+     * @return
      */
-    public IPlayerEntry getPlayer();
-    
-    /**
-     * Get the chunk data
-     * @return 
-     */
-    public IChunkData getData();
-    
-    /**
-     * Set the chunk data
-     * @param data
-     * @return 
-     */
-    public boolean setData(IChunkData data);
-    
-    /**
-     * Set the chunk undo data
-     * @param data
-     * @return 
-     */
-    public boolean setData(IChunkUndoData data);
-    
-    
-    /**
-     * Set the chunk data
-     * @param data
-     * @return 
-     */
-    public IChunkUndoData setData(IChangesetData data);
-
+    byte[] getData();
 
     /**
-     * Flush stored data to the server     
+     * Get the Change type
+     *
+     * @return
      */
-    public void flush();
-    
-    
-    /**
-     * Initialise the lighting
-     */
-    public void initLighting();
-    
-    
-    /**
-     * Update the light for provided position
-     * @param x
-     * @param y
-     * @param z 
-     */
-    public void updateLight(int x, int y, int z);
+    String getType();
 }

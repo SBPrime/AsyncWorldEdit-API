@@ -41,7 +41,9 @@
 package org.primesoft.asyncworldedit.api.directChunk;
 
 import com.sk89q.jnbt.CompoundTag;
+import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.blocks.BaseBlock;
+import java.util.UUID;
 import org.bukkit.Chunk;
 import org.bukkit.Material;
 import org.primesoft.asyncworldedit.api.playerManager.IPlayerEntry;
@@ -110,4 +112,17 @@ public interface IDirectChunkAPI {
      * @return
      */
     Material convertId(char combinedId, IInOutParam<Integer> data);
+    
+    
+    /**
+     * Create new instance of serialized entity
+     * @param uuid
+     * @param position
+     * @param yaw
+     * @param pitch
+     * @param nbt
+     * @return 
+     */
+    ISerializedEntity createEntity(UUID uuid, Vector position,
+            float yaw, float pitch, byte[] nbt);
 }

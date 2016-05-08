@@ -41,6 +41,7 @@
 package org.primesoft.asyncworldedit.api;
 
 import org.primesoft.asyncworldedit.api.blockPlacer.IBlockPlacer;
+import org.primesoft.asyncworldedit.api.changesetSerializer.ISerializerManager;
 import org.primesoft.asyncworldedit.api.directChunk.IDirectChunkAPI;
 import org.primesoft.asyncworldedit.api.map.IMapUtils;
 import org.primesoft.asyncworldedit.api.playerManager.IPlayerManager;
@@ -119,4 +120,11 @@ public interface IAsyncWorldEdit {
      * @return 
      */
     IMapUtils getMapUtils();
+    
+    
+    /**
+     * Get the changeset serializer
+     * @return 
+     */
+    ISerializerManager getChangesetSerializer();
 }

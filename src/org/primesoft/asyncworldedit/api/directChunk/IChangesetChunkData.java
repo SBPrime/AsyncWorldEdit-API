@@ -44,25 +44,5 @@ package org.primesoft.asyncworldedit.api.directChunk;
  *
  * @author SBPrime
  */
-public interface IChangesetChunkData extends IBaseChunkData {
-    /**
-     * Get the list of added entities
-     *
-     * @return
-     */
-    ISerializedEntity[] getAddedEntities();
-    
-    /**
-     * Get the list of removed entities
-     *
-     * @return
-     */
-    ISerializedEntity[] getRemovedEntities();
-    
-    
-    /**
-     * Get the stored blocks
-     * @return
-     */
-    IBlockEntry[] getChangedBlocks();
+public interface IChangesetChunkData extends IChangesetData, IBaseChunkData {
 }

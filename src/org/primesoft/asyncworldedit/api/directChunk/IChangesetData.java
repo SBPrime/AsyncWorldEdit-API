@@ -1,6 +1,6 @@
 /*
  * AsyncWorldEdit API
- * Copyright (c) 2015, SBPrime <https://github.com/SBPrime/>
+ * Copyright (c) 2016, SBPrime <https://github.com/SBPrime/>
  * Copyright (c) AsyncWorldEdit API contributors
  *
  * All rights reserved.
@@ -40,85 +40,29 @@
  */
 package org.primesoft.asyncworldedit.api.directChunk;
 
-import org.bukkit.World;
-import org.primesoft.asyncworldedit.api.playerManager.IPlayerEntry;
-
 /**
- * Chunk manipulation class
+ *
  * @author SBPrime
  */
-public interface IWrappedChunk {
+public interface IChangesetData {
     /**
-     * Get the bukkit world
-     * @return 
+     * Get the list of added entities
+     *
+     * @return
      */
-    public World getWorld();
+    ISerializedEntity[] getAddedEntities();
     
     /**
-     * Get the chunk X coordinate
-     * @return 
+     * Get the list of removed entities
+     *
+     * @return
      */
-    public int getX();
-    
-    /**
-     * Get the chunk Y coordinate
-     * @return 
-     */
-    public int getZ();
-    
-
-    /**
-     * Get the player that wrapped the chunk
-     * @return 
-     */
-    public IPlayerEntry getPlayer();
-    
-    /**
-     * Get the chunk data
-     * @return 
-     */
-    public IChunkData getData();
-    
-    /**
-     * Set the chunk data
-     * @param data
-     * @return 
-     */
-    public boolean setData(IChunkData data);
-    
-    /**
-     * Set the chunk undo data
-     * @param data
-     * @return 
-     */
-    public boolean setData(IChunkUndoData data);
+    ISerializedEntity[] getRemovedEntities();
     
     
     /**
-     * Set the chunk data
-     * @param data
-     * @return 
+     * Get the stored blocks
+     * @return
      */
-    public IChunkUndoData setData(IChangesetData data);
-
-
-    /**
-     * Flush stored data to the server     
-     */
-    public void flush();
-    
-    
-    /**
-     * Initialise the lighting
-     */
-    public void initLighting();
-    
-    
-    /**
-     * Update the light for provided position
-     * @param x
-     * @param y
-     * @param z 
-     */
-    public void updateLight(int x, int y, int z);
+    IBlockEntry[] getChangedBlocks();
 }

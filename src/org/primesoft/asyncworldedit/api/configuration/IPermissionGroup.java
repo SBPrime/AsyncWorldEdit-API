@@ -143,5 +143,10 @@ public interface IPermissionGroup {
      * @return
      */
     boolean isTalkative();
-
+    
+    /**
+     * The WorldEdit config
+     * @return 
+     */
+    IWorldEditConfig getWorldEditConfig();
 }

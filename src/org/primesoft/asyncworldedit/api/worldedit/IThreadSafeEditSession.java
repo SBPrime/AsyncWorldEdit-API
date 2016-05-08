@@ -47,6 +47,7 @@ import com.sk89q.worldedit.WorldEditException;
 import com.sk89q.worldedit.blocks.BaseBlock;
 import com.sk89q.worldedit.event.extent.EditSessionEvent;
 import com.sk89q.worldedit.history.change.Change;
+import com.sk89q.worldedit.history.changeset.ChangeSet;
 import com.sk89q.worldedit.patterns.Pattern;
 import com.sk89q.worldedit.util.eventbus.EventBus;
 import java.util.Iterator;
@@ -88,6 +89,12 @@ public interface IThreadSafeEditSession extends IAweEditSession {
     Object getMutex();
 
     IPlayerEntry getPlayer();
+    
+    /**
+     * Get the root changeset entry
+     * @return 
+     */
+    ChangeSet getRootChangeSet();
 
     /**
      * Check if async mode is forced

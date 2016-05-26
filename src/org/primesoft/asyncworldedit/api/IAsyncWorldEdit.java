@@ -40,6 +40,7 @@
  */
 package org.primesoft.asyncworldedit.api;
 
+import java.util.UUID;
 import org.primesoft.asyncworldedit.api.blockPlacer.IBlockPlacer;
 import org.primesoft.asyncworldedit.api.changesetSerializer.ISerializerManager;
 import org.primesoft.asyncworldedit.api.directChunk.IDirectChunkAPI;
@@ -50,81 +51,111 @@ import org.primesoft.asyncworldedit.api.taskdispatcher.ITaskDispatcher;
 
 /**
  * The main AsyncWorldEdit API class
+ *
  * @author SBPrime
  */
-public interface IAsyncWorldEdit {    
+public interface IAsyncWorldEdit {
+
     /**
      * Get the progress display manager
-     * @return 
+     *
+     * @return
      */
     IProgressDisplayManager getProgressDisplayManager();
-    
-    
+
     /**
      * Get the task dispatcher
-     * @return 
+     *
+     * @return
      */
     ITaskDispatcher getTaskDispatcher();
-    
-    
+
     /**
      * Get the block placer
-     * @return 
+     *
+     * @return
      */
     IBlockPlacer getBlockPlacer();
-    
-    
+
     /**
      * Get the physics watcher
-     * @return 
+     *
+     * @return
      */
     IPhysicsWatch getPhysicsWatcher();
-    
 
     /**
      * The player manager
-     * @return 
+     *
+     * @return
      */
     IPlayerManager getPlayerManager();
-    
-    
+
     /**
      * Get the direct chunk API
-     * @return 
+     *
+     * @return
      */
     IDirectChunkAPI getDirectChunkAPI();
-    
-    
+
     /**
      * Get the native API adapter
-     * @return 
+     *
+     * @return
      */
     IAdapter getAdapter();
-    
+
     /**
      * Get the current version of the API
-     * @return 
+     *
+     * @return
      */
     double getAPIVersion();
-    
-    
+
     /**
-     * Get the current version of the API
-     * detailed in format x.y.z
-     * @return 
+     * Get the current version of the API detailed in format x.y.z
+     *
+     * @return
      */
     byte[] getDetailAPIVersion();
-    
+
     /**
      * Get the map manipulation utils
-     * @return 
+     *
+     * @return
      */
     IMapUtils getMapUtils();
+
+    /**
+     * Get the changeset serializer
+     *
+     * @return
+     */
+    ISerializerManager getChangesetSerializer();
+
+    /**
+     * The WorldEdit integrator
+     *
+     * @return
+     */
+    IWorldeditIntegrator getWorldEditIntegrator();
+
+    /**
+     * Get the AsyncWorldEdit world
+     * (wrapper for world)
+     *
+     * @param worldUUID
+     * @return
+     */
+    IWorld getWorld(UUID worldUUID);
     
     
     /**
-     * Get the changeset serializer
-     * @return 
+     * Get the AsyncWorldEdit world
+     * (wrapper for world)
+     *
+     * @param worldName
+     * @return
      */
-    ISerializerManager getChangesetSerializer();
+    IWorld getWorld(String worldName);
 }

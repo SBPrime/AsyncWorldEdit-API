@@ -66,7 +66,7 @@ import com.sk89q.worldedit.world.biome.BaseBiome;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import javax.annotation.Nullable;
+//import javax.annotation.Nullable;
 
 /**
  *
@@ -337,7 +337,7 @@ public interface IEditSession extends Extent {
     public boolean setBlockIfAir(Vector position, BaseBlock block) throws MaxChangedBlocksException;
 
     @Override
-    @Nullable
+//    @Nullable
     public Entity createEntity(com.sk89q.worldedit.util.Location location, BaseEntity entity);
 
     /**
@@ -390,7 +390,7 @@ public interface IEditSession extends Extent {
     public void flushQueue();
 
     @Override
-    public @Nullable Operation commit();
+    public /*@Nullable*/ Operation commit();
 
     /**
      * Count the number of blocks of a given list of types in a region.

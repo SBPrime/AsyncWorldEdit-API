@@ -38,43 +38,49 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package org.primesoft.asyncworldedit.api.map;
+package org.primesoft.asyncworldedit.api;
 
-import com.sk89q.worldedit.BlockVector2D;
-import java.io.File;
-import org.primesoft.asyncworldedit.api.IWorld;
+import java.util.UUID;
 
 /**
- *
+ * World wrapper class
  * @author SBPrime
  */
-public interface IMapUtils {
+public interface IWorld {
     /**
-     * Get teh map folder
-     * @param w
+     * Get the world UUID
      * @return 
      */
-    public File getMapFolder(IWorld w);
+    UUID getUID();
     
     
     /**
-     * Get the map region folder
-     * @param w
+     * Get the world name
      * @return 
      */
-    public File getMapRegion(IWorld w);
-        
+    String getName();
+
     /**
-     * Get the map region files
-     * @param w
-     * @return 
+     * Regenerate world chunk
+     * @param cx
+     * @param cz 
      */
-    public File[] getMapFiles(IWorld w);
+    void regenerateChunk(int cx, int cz);    
+
     
     /**
-     * Get the available chunks
-     * @param w
+     * Tests if the chunk is loaded
+     * @param cx
+     * @param cz
      * @return 
      */
-    public BlockVector2D[] getAllWorldChunks(IWorld w);
+    boolean isChunkLoaded(int cx, int cz);
+    
+    /**
+     * Get chunk at location
+     * @param cx
+     * @param cz
+     * @return 
+     */
+    IChunk getChunkAt(int cx, int cz);
 }

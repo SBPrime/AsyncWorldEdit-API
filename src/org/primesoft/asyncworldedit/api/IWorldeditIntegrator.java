@@ -38,43 +38,36 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package org.primesoft.asyncworldedit.api.map;
+package org.primesoft.asyncworldedit.api;
 
-import com.sk89q.worldedit.BlockVector2D;
-import java.io.File;
-import org.primesoft.asyncworldedit.api.IWorld;
+import com.sk89q.worldedit.entity.Player;
+import com.sk89q.worldedit.world.World;
+import org.primesoft.asyncworldedit.api.playerManager.IPlayerEntry;
 
 /**
  *
  * @author SBPrime
  */
-public interface IMapUtils {
+public interface IWorldeditIntegrator {
+
     /**
-     * Get teh map folder
-     * @param w
+     * Get the WorldEdit player wrapper
+     * @param player
+     * @return
+     */
+    Player wrapPlayer(IPlayerEntry player);
+
+    /**
+     * Get the WorldEdit world wrapper
+     * @param world
      * @return 
      */
-    public File getMapFolder(IWorld w);
-    
-    
-    /**
-     * Get the map region folder
-     * @param w
-     * @return 
-     */
-    public File getMapRegion(IWorld w);
-        
-    /**
-     * Get the map region files
-     * @param w
-     * @return 
-     */
-    public File[] getMapFiles(IWorld w);
+    World getWorld(IWorld world);
     
     /**
-     * Get the available chunks
-     * @param w
+     * Get AsyncWorldEdit world from WorldEdit world
+     * @param world
      * @return 
      */
-    public BlockVector2D[] getAllWorldChunks(IWorld w);
+    IWorld getWorld(World world);
 }

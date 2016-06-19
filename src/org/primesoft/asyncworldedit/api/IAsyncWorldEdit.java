@@ -158,4 +158,11 @@ public interface IAsyncWorldEdit {
      * @return
      */
     IWorld getWorld(String worldName);
+    
+    
+    /**
+     * Get the AsyncWorldEdit operations
+     * @return 
+     */
+    IAweOperations getOperations();
 }

@@ -1,6 +1,6 @@
 /*
  * AsyncWorldEdit API
- * Copyright (c) 2016, SBPrime <https://github.com/SBPrime/>
+ * Copyright (c) 2014, SBPrime <https://github.com/SBPrime/>
  * Copyright (c) AsyncWorldEdit API contributors
  *
  * All rights reserved.
@@ -44,15 +44,10 @@ package org.primesoft.asyncworldedit.api.utils;
 /**
  *
  * @author SBPrime
- * @param <TResult>
- * @param <TParam>
+ * @param <T> The function result type
+ * @param <TException> The function exception
  */
-public interface IFuncParam<TResult, TParam> {
 
-    /**
-     *
-     * @param param
-     * @return
-     */
-    TResult execute(TParam param);
+public interface IFuncEx<T, TException extends Exception> {
+    T execute() throws TException;
 }

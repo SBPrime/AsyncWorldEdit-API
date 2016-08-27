@@ -38,21 +38,15 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 package org.primesoft.asyncworldedit.api.utils;
 
 /**
- *
+ * Provides a mechanism for releasing and cleaning up an object.
  * @author SBPrime
- * @param <TResult>
- * @param <TParam>
  */
-public interface IFuncParam<TResult, TParam> {
-
+public interface IDisposable {
     /**
-     *
-     * @param param
-     * @return
+     * Performs tasks associated with cleaning up the class.
      */
-    TResult execute(TParam param);
+    void dispose();
 }

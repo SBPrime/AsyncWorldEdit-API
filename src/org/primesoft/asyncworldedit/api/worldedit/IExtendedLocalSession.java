@@ -1,6 +1,6 @@
 /*
  * AsyncWorldEdit API
- * Copyright (c) 2015, SBPrime <https://github.com/SBPrime/>
+ * Copyright (c) 2017, SBPrime <https://github.com/SBPrime/>
  * Copyright (c) AsyncWorldEdit API contributors
  *
  * All rights reserved.
@@ -38,108 +38,32 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package org.primesoft.asyncworldedit.api.directChunk;
+package org.primesoft.asyncworldedit.api.worldedit;
+
+import com.sk89q.worldedit.EditSession;
+import java.util.List;
+import org.primesoft.asyncworldedit.api.playerManager.IPlayerEntry;
 
 /**
  *
  * @author SBPrime
  */
-public interface ISimpleChunkData extends IChunkDataCommon {
-
+public interface IExtendedLocalSession extends ILocalSession {
     /**
-     * Get block light emission from chunk data
-     *
-     * @param x
-     * @param y
-     * @param z
-     * @return
-     */
-    byte getEmissionLight(int x, int y, int z);
-    
-    /**
-     * Get block sky light from chunk data
-     *
-     * @param x
-     * @param y
-     * @param z
-     * @return
-     */
-    byte getSkyLight(int x, int y, int z);
-
-    /**
-     * Get block material ID at provided possition
-     *
-     * @param x
-     * @param y
-     * @param z
-     * @return
-     */
-    int getMaterial(int x, int y, int z);
-    
-    /**
-     * Get the raw block data
-     * @param x
-     * @param y
-     * @param z
+     * Get the owner player entry for this local session
      * @return 
      */
-    char getRawBlockData(int x, int y, int z);
-
-    /**
-     * Set light emission to chunk data
-     *
-     * @param x
-     * @param y
-     * @param z
-     * @param lightLevel
-     */
-    void setEmissionLight(int x, int y, int z, byte lightLevel);
+    IPlayerEntry getOwner();
     
     /**
-     * Set sky light to chunk data
-     *
-     * @param x
-     * @param y
-     * @param z
-     * @param lightLevel
-     */
-    void setSkyLight(int x, int y, int z, byte lightLevel);
-
-    /**
-     * Set chunk block
-     *
-     * @param x X coordinate inside chunk (0-15)
-     * @param y Y coordinate inside chunk (0-15)
-     * @param z Z coordinate inside chunk (0-15)
-     * @param id Material ID
-     */
-    void setBlock(int x, int y, int z, char id);
-
-    /**
-     * Set chunk block
-     *
-     * @param x X coordinate inside chunk (0-15)
-     * @param y Y coordinate inside chunk (0-15)
-     * @param z Z coordinate inside chunk (0-15)
-     * @param id Material ID
-     * @param emission The block emission level
-     */
-    void setBlockAndEmission(int x, int y, int z, char id, byte emission);
-    
-    
-    /**
-     * Get the block biome
-     * @param x
-     * @param z
+     * Get the current history pointer in the history list
      * @return 
      */
-    int getBiome(int x, int z);
-    
+    int getHistoryPointer();
     
     /**
-     * Set the block biome
-     * @param x
-     * @param z
+     * Get the current stored history entries
+     * @return 
      */
-    void setBiome(int x, int z, int biome);
+    List<EditSession> getHistory();
 }
